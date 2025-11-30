@@ -3,6 +3,7 @@ import router from "./routes/api";
 import bodyParser from "body-parser";
 import cors from "cors";
 import env from "./utils/env";
+
 const app = express();
 
 app.use(
@@ -13,18 +14,20 @@ app.use(
     credentials: true,
   })
 );
+
 app.use(bodyParser.json());
 
-const PORT = 5000;
-
-router.get("/", (req, res) => {
+// route utama
+app.get("/", (req, res) => {
   res.status(200).json({
-    message: "Welcome to the API",
+    message: "API is running 🚀",
   });
 });
 
+// routes utama di /api
 app.use("/api", router);
 
+const PORT = 5000;
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });

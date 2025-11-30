@@ -1,6 +1,6 @@
-# 🥬 SayurSegar Backend
+# KeripikSelodang Backend
 
-Backend service untuk aplikasi **SayurSegar** — platform e-commerce sayur dan buah segar langsung dari petani.  
+Backend service untuk aplikasi **Keripik** — platform e-commerce keripik selodang langsung dari UMKM lokal.  
 Dibangun dengan **Express.js + TypeScript**, menggunakan **Prisma ORM** untuk manajemen database.
 
 ---
@@ -19,7 +19,7 @@ Dibangun dengan **Express.js + TypeScript**, menggunakan **Prisma ORM** untuk ma
 ## 📂 Project Structure
 
 ```base
-be-sayur-segar/
+be-selodang/
 │
 ├── .idea/ # Konfigurasi IDE (optional)
 ├── prisma/ # Skema database & migrasi Prisma
@@ -44,8 +44,8 @@ be-sayur-segar/
 ### 1. Clone Repository
 
 ```bash
-  git clone https://github.com/fahrurrzl/be-sayur-segar.git
-  cd be-sayur-segar
+  git clone https://github.com/TriRestuSanubari/be-selodang.git
+  cd be-selodang
 ```
 
 ### 2. Install Dependencies

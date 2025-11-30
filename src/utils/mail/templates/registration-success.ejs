@@ -1,84 +1,141 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ACARA Activation User</title>
-  </head>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aktivasi Akun</title>
+
   <style>
     body {
-      font-family: Arial, Helvetica, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f4f4f4;
-    }
-    .container {
-      max-width: 600px;
-      margin: 2px auto;
-      background-color: #fff;
-      border: 1px solid #ddd;
-      border: 5px;
-      overflow: hidden;
-    }
-    .header {
-      background-color: #4caf50;
-      color: #fff;
-      text-align: center;
-      padding: 20px;
-    }
-    .content {
-      padding: 20px;
-    }
-    .footer {
-      background-color: #f1f1f1;
-      color: #555;
-      padding: 10px;
-      text-align: center;
-    }
-    .button {
-      display: inline-block;
-      padding: 10px 20px;
-      margin: 20px 0;
-      color: #fff;
-      background-color: #4caf50;
-      text-decoration: none;
+      background: #f4f5f7;
+      font-family: "Segoe UI", Arial, sans-serif;
     }
 
-    @media (max-width: 600px) {
-      .container {
-        width: 100%;
-        margin: 0;
-        border-radius: 0;
-      }
+    .container {
+      max-width: 600px;
+      background: #ffffff;
+      margin: 30px auto;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.07);
+      border: 1px solid #eaeaea;
+    }
+
+    /* Header baru tanpa gambar */
+    .header {
+      background: linear-gradient(to right, #e11d48, #f97316);
+      color: #fff;
+      text-align: center;
+      padding: 35px 20px;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 26px;
+      letter-spacing: 0.5px;
+    }
+
+    .content {
+      padding: 35px 28px;
+      color: #333;
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    .content ul {
+      padding-left: 18px;
+    }
+
+    /* Tombol */
+    .button {
+      display: inline-block;
+      padding: 13px 28px;
+      background: linear-gradient(to right, #e11d48, #f97316);
+      color: #fff !important;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      margin: 20px 0;
+      transition: transform .25s, opacity .25s;
+    }
+
+    .button:hover {
+      opacity: 0.95;
+      transform: translateY(-2px);
+    }
+
+    /* Box informasi */
+    .info-box {
+      background: #fafafa;
+      border-left: 4px solid #e11d48;
+      padding: 12px 15px;
+      margin: 20px 0;
+      border-radius: 6px;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .divider {
+      height: 1px;
+      background: #e9e9e9;
+      margin: 28px 0;
+    }
+
+    .footer {
+      background: #f1f1f1;
+      text-align: center;
+      padding: 18px;
+      font-size: 12px;
+      color: #777;
     }
   </style>
-  <body>
-    <div class="container">
-      <div class="header">
-        <h1>Selamat Datang!</h1>
-      </div>
-      <div class="content">
-        <p>Hello🖐️ <%= name %>,</p>
-        <p>Selamat datang di SayurSegar!</p>
-        <p>
-          Terima kasih telah bergabung di layanan kami. Berikut adalah informasi
-          dari akun Anda:
-        </p>
-        <ul>
-          <li><strong>Name: </strong><%= name %></li>
-          <li><strong>Email: </strong><%= email %></li>
-          <li><strong>Tanggal Pendaftaran: </strong><%= createdAt %></li>
-        </ul>
-        <p>Untuk memuali, silahkan click tombol dibawah ini:</p>
-        <a href="<%= activationLink %>" class="button">Aktifkan Akun</a>
-        <p>
-          Jika Anda memiliki pertanyaan, jangan ragu untuk menghubungi kami.
-        </p>
-        <p>Salam hangat, dari tim SayurSegar💖</p>
-      </div>
-      <div class="footer">
-        <p>&copy; 2025 SayurSegar. Semua HAK cipta Dilindungi</p>
-      </div>
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="header">
+      <h1>Aktivasi Akun Anda</h1>
     </div>
-  </body>
+
+    <div class="content">
+      <p>Halo 🖐️ <strong><%= name %></strong>,</p>
+
+      <p>
+        Terima kasih telah bergabung bersama layanan kami. Akun Anda telah berhasil dibuat
+        dan hampir siap digunakan. Berikut rincian akun Anda:
+      </p>
+
+      <ul>
+        <li><strong>Nama:</strong> <%= name %></li>
+        <li><strong>Email:</strong> <%= email %></li>
+        <li><strong>Tanggal Pendaftaran:</strong> <%= createdAt %></li>
+      </ul>
+
+      <div class="info-box">
+        Untuk mengaktifkan akun, klik tombol di bawah ini. Tautan hanya berlaku dalam jangka waktu tertentu.
+      </div>
+
+      <a class="button" href="<%= activationLink %>">Aktifkan Akun</a>
+
+      <div class="divider"></div>
+
+      <p>
+        Jika Anda memerlukan bantuan, tim kami selalu siap membantu kapan pun Anda membutuhkan.
+      </p>
+
+      <p>Salam hangat,<br>
+      <strong>Tim Developer Selodang</strong></p>
+    </div>
+
+    <div class="footer">
+      <p>Email ini dikirim secara otomatis. Mohon tidak membalas pesan ini.</p>
+      <p>&copy; 2025 Keripik Cabe Selodang. Semua Hak Cipta Dilindungi.</p>
+    </div>
+
+  </div>
+</body>
 </html>
