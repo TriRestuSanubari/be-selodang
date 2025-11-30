@@ -6,7 +6,6 @@ import env from "./utils/env";
 
 const app = express();
 
-// CORS
 app.use(
   cors({
     origin: env.FRONTEND_URL,
@@ -16,22 +15,19 @@ app.use(
   })
 );
 
-// JSON parser
 app.use(bodyParser.json());
 
-// Root route
+// route utama
 app.get("/", (req, res) => {
   res.status(200).json({
     message: "API is running 🚀",
   });
 });
 
-// Main API routes
+// routes utama di /api
 app.use("/api", router);
 
-// Important: use Railway assigned port
-const PORT = process.env.PORT || 5000;
-
+const PORT = 5000;
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Server running on http://localhost:${PORT}`);
 });
