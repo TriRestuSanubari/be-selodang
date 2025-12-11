@@ -75,12 +75,17 @@ export default {
       });
     }
   },
+
   async index(req: IReqUser, res: Response) {
     const { search, category, page, limit } = req.query;
+
     try {
+      const pageNum = Number(page) || 1;
+      const limitNum = Number(limit) || 8;
+
       const products = await prisma.product.findMany({
         where: {
-          ...(search
+          ...(search && search !== "null"
             ? {
                 name: {
                   contains: search as string,
@@ -88,7 +93,9 @@ export default {
                 },
               }
             : {}),
-          ...(category ? { categoryId: category as string } : {}),
+          ...(category && category !== "null"
+            ? { categoryId: category as string }
+            : {}),
         },
         include: {
           seller: {
@@ -103,13 +110,13 @@ export default {
         orderBy: {
           createdAt: "desc",
         },
-        take: Number(limit),
-        skip: (Number(page) - 1) * Number(limit),
+        take: limitNum,
+        skip: (pageNum - 1) * limitNum,
       });
 
       const total = await prisma.product.count({
         where: {
-          ...(search
+          ...(search && search !== "null"
             ? {
                 name: {
                   contains: search as string,
@@ -117,7 +124,9 @@ export default {
                 },
               }
             : {}),
-          ...(category ? { categoryId: category as string } : {}),
+          ...(category && category !== "null"
+            ? { categoryId: category as string }
+            : {}),
         },
       });
 
@@ -125,8 +134,8 @@ export default {
         message: "Products fetched successfully",
         data: {
           products,
-          totalPage: Math.ceil(total / Number(limit)),
-          currentPage: Number(page),
+          totalPage: Math.ceil(total / limitNum),
+          currentPage: pageNum,
           total,
         },
       });
@@ -137,6 +146,7 @@ export default {
       });
     }
   },
+
   async show(req: IReqUser, res: Response) {
     const { id } = req.params;
 
@@ -183,6 +193,7 @@ export default {
       });
     }
   },
+
   async update(req: IReqUser, res: Response) {
     const user = req.user;
     const { id } = req.params;
@@ -262,12 +273,12 @@ export default {
           message: error.issues[0].message,
         });
       }
-      console.log("error => ", error);
       return res.status(500).json({
         message: "Internal server error",
       });
     }
   },
+
   async delete(req: IReqUser, res: Response) {
     const user = req.user;
     const { id } = req.params;
@@ -323,6 +334,7 @@ export default {
       });
     }
   },
+
   async adminDelete(req: IReqUser, res: Response) {
     const { id } = req.params;
     try {
@@ -358,6 +370,7 @@ export default {
       });
     }
   },
+
   async getFeatured(req: IReqUser, res: Response) {
     try {
       const products = await prisma.product.findMany({
